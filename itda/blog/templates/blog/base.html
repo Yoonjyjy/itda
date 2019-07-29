@@ -1,0 +1,212 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+    div{
+    display: inline-block;
+    }
+    
+    .img-circle, .badge {
+    border-radius: 50%;
+    /* border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%; */
+    }
+
+    .btn-group, .login {
+        position: absolute;
+        right: 35px;
+    }
+    
+    .menubar{
+        font-size:14px;
+    }
+
+    .menubar ul{
+    height:50px;
+    list-style:none;
+    margin:0;
+    padding:15;
+    }
+
+    .menubar li a{
+    color:#cccccc;
+    display:block;
+    font-weight:normal;
+    line-height:30px;
+    margin:0px;
+    padding:0px 10px;
+    text-align:center;
+    }
+
+    .menubar li a:hover, .menubar ul li:hover a{
+    color:#000000;
+    }
+
+    .menubar li ul{
+    display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+    background-color: #ffffff;
+    height:auto;
+    padding:0px;
+    margin:0px;
+    border:0px;
+    position:absolute;
+    width:300px;
+    z-index:200;
+    /*top:1em;
+    /*left:0;*/
+    }
+
+    .menubar li:hover ul{
+    display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+    }
+
+    .menubar li li {
+    display:block;
+    float: none;
+    margin:0px;
+    padding:0px;
+    width:80px;
+    }
+
+    .menubar li ul a{
+    display:block;
+    height:30px;
+    font-size:12px;
+    margin:0px;
+    padding:0px 10px 0px 5px;
+    text-align:left;
+    }
+
+    .menubar li ul a:hover, .menubar li ul li:hover a{
+    background: rgb(71,71,71);
+    color:#ffffff;
+    text-decoration:none;
+    }
+
+    .menubar p{
+    clear: right;
+    }
+
+    p{
+    margin: 0;
+    }
+    .card{
+    position: relative;
+    display: inline-block;
+    text-align: left;
+    background: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.20);
+    border-radius: 10px;
+    width:300px;
+    overflow: hidden;
+    transition: 0.3s ease-in;
+    }
+    .card:hover{
+    box-shadow: 0 16px 30px 0 rgba(0,0,0,0.20);
+    transition: 0.3s ease-in;
+    }
+    .mask{
+    width:100%;
+    height: 254px;
+    overflow: hidden;
+    }
+    #img1{
+    width:100%;
+    height: auto;
+    }
+    .title{
+    font-family: NotoSansCJKkr-DemiLight;
+    font-size: 16px;
+    margin:20px 20px 0 20px;
+    }
+    .title > b {
+    color:hotpink;
+    }
+    .discription{
+    margin:12px 20px 30px 20px;
+    }
+    .line{
+    width: 100%;
+    height: 1px;
+    background-color: #EBEDF3;
+    }
+
+    .link{
+    padding: 12px 20px 12px 20px;
+    color:#747888;
+
+    }
+
+    .arrow{
+    float: right;
+    margin: 6px auto;
+    }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container-fluid">
+            <div class="navbar-header" style="width: 100%; margin: 15px;">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                <img src={% static 'img/itda_Logo_Text.png' %} style="height: 45px;">
+                </a>
+
+                {% if user.is_active %}
+                <div class="btn-group">
+                    <a href="">
+                        <img alt="profile" src={% static 'img/profile_background.png' %} style="width: 45px; height: 45px;" alt="" class="img-circle">
+                    </a><span class="badge" style="height: 100%; background: red; position:relative; color: #ffffff;">2</span>
+
+                    <div class="menubar">
+                        <ul>
+                            <li><a href="#" id="current">▼</a>
+                            <ul>
+                                <li><a href="#">마이페이지</a></li>
+                                <li><a href="#">메뉴1</a></li>
+                                <li><a href="#">메뉴2</a></li>
+                                <li><a href="{% url 'logout' %}">로그아웃</a></li>
+                            </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                <!-- <a href="{% url 'logout' %}">로그아웃</a> -->
+                </div>
+
+                {% else %}
+                <div class="login" style="padding-top: 10px;">
+                    <a href="{% url 'login' %}" >로그인</a>
+                </div>
+
+                {% endif %}
+                <center>
+                <form class="navbar-form container-fluid" role="search" style="padding-top: 30px; margin:0 auto; display:block;">
+                    <div class="form-group" style=" display:inline-block;">
+                        <div style="display:inline-block;"><select class="form-control" style="width:100px">
+                            <option>옵션1</option>
+                            <option>옵션2</option>
+                            <option>옵션3</option>
+                            <option>옵션4</option>
+                            <option>옵션5</option>
+                        </select>
+                        </div>
+                        <div style="display:inline-block;">
+                        <input type="text" class="form-control" style="border-color: #3399ff; border-width: 4px; width: 400px; display: inline-block;" placeholder="검색어를 입력하세요">
+                        </div>
+                        <button type="submit" class="btn btn-default"><img alt="search" src={% static 'img/search_Icon.png' %} style="width: 20px;">
+                        </button>
+                    </div>
+                    
+                </form>
+                </center>
+            </div>
+        </div>            
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+</body>

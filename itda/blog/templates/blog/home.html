@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<center>
+    <div class="container-fluid" style="position: block; left:50%; margin: 0; background: #cce5ff; padding-right: 5px; padding-left: 5px;">
+        <div class="container-fluid" style="position: block; margin-top:10px; margin-bottom:10px; max-width: 800px; min-height: 530px; background: #ffffff; border-radius: 2%; border: #3399ff">
+            <div style="display: block;">
+                <h1 style="display:block; margin:20px 20px;">New</h1>
+                <!-- <a href="" style="display:inline-block;">새글쓰기</a> -->
+                <div class="btn-group" role="group" aria-label="..." style="background: #e7f2ff; border: #3399ff; display: inline-block; position:relative; right:0; margin-bottom:20px;">
+                    <button type="button" class="btn btn-default" style="color: #3399ff"><a href="{% url 'new' %}">새 글 쓰기</a></button>
+                    <button type="button" class="btn btn-default" style="color: #3399ff">게시판 1</button>
+                    <button type="button" class="btn btn-default" style="color: #3399ff">게시판 2</button>
+                    <button type="button" class="btn btn-default" style="color: #3399ff">게시판 3</button>
+                </div>
+            </div>
+
+            {% for post in posts.all %}
+            <a href="{% url 'detail' post.id %}">
+            <div style="text-align: left; display: inline-block; margin:0 10px;">
+                <!-- <p style="text-align: left;"><a href="{% url 'detail' post.id %}">{{post.title}} | {{post.author}}</a></p> -->
+                <div class="card" style="cursor:pointer; width: 350px; height: 120px;">
+                    <p class="title"><b>{{post.author}}</b></p>
+                    <p class="discription">{{post.title}}</p>
+                </div>
+            </div></a>
+            {% endfor %}
+        </div>        
+    </div>
+</center>
+{% endblock %}

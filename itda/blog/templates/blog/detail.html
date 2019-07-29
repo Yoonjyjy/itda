@@ -1,0 +1,23 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+<center>
+    <div class="container-fluid" style="position: block; left:50%; margin: 0; background: #cce5ff; padding-right: 5px; padding-left: 5px;">
+        <div class="container-fluid" style="position: block; margin-top:10px; margin-bottom:10px; max-width: 800px; min-height: 530px; background: #ffffff; border-radius: 2%; border: #3399ff">
+            <h5 style="text-align: left; margin:20px 20px;">게시글 상세보기</h5>
+            <div style="text-align: left; display: block; margin:0 20px;">
+                <div>
+                    <h3>{{post.title}}</h3>
+                    <p>작성일자 : {{post.created_date}}</p>
+                    <p>{{post.text}}</p>
+                    <a href="{% url 'home' %}">home</a>
+                    <a href="{% url 'edit' post.id %}">edit</a>
+                    <a href="{% url 'delete' post.id %}">delete</a>
+                </div>
+            </div>
+        </div>        
+    </div>
+</center>
+
+{% endblock %}

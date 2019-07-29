@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+<div>
+    <h1>로그인 페이지</h1>
+    {% if form.errors %}
+    <p>error: 아이디나 비밀번호를 확인해주세요!</p>
+
+    {% endif %}
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">로그인</button>
+    </form>
+</div>
+
+{% endblock %}
